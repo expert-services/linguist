@@ -25,6 +25,6 @@ jobs:
           pwd
           ls -al
           whoami
-          chown -R $USER:$USER $GITHUB_WORKSPACE
+          chown -R root:root .
           github-linguist --breakdown --json 
           
