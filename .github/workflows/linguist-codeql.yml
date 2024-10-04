@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  detect-language:
+  detect-languages:
     outputs:
       codeql_languages: ${{ steps.github-linguist.outputs.languages }}
     runs-on: ubuntu-latest
