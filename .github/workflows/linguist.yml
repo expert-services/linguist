@@ -22,9 +22,6 @@ jobs:
 
       - name: github-linguist
         run: |
-          pwd
-          ls -al
-          whoami
           chown -R root:root .
-          github-linguist --breakdown --json 
+          github-linguist --json 
           
