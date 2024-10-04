@@ -1,0 +1,20 @@
+name: GitHub Linguist for CodeQL
+
+on:
+  workflow_call:
+
+jobs:
+  github-linguist:
+    runs-on: ubuntu-latest
+    
+    container:
+      image: ghcr.io/expert-services/linguist@sha256:4782256bbb1d07eee167d2abf2b0bf4329d1e84efc4c4af83ff114f762d0e5c0
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Execute github-linguist
+        id: github-linguist
+        run: |
+          chown -R root:root .
+          echo "languages=$(github-linguist --json)" >> $GITHUB_OUTPUT
