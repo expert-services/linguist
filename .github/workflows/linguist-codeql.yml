@@ -18,6 +18,3 @@ jobs:
         run: |
           chown -R root:root .
           echo "languages=$(github-linguist --json)" >> $GITHUB_OUTPUT
-
-      - name: Print github-linguist output
-        run: echo "Languages detected: ${{ steps.github-linguist.outputs.languages }}"
