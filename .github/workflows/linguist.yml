@@ -24,5 +24,7 @@ jobs:
         run: |
           pwd
           ls -al
+          whoami
+          chown -R $USER $GITHUB_WORKSPACE
           github-linguist --breakdown --json 
           
