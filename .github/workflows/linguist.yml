@@ -24,10 +24,5 @@ jobs:
         run: |
           pwd
           ls -al
-          git init 2> /dev/null > /dev/null
-          git add --all 2> /dev/null > /dev/null
-          git commit -m "local linguist auto commit" 2> /dev/null > /dev/null
-          echo "created local git environment"
-          github-linguist --breakdown --json "$@"
-          rm -Rf .git 2> /dev/null > /dev/null
+          github-linguist --breakdown --json 
           
