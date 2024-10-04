@@ -1,0 +1,17 @@
+name: Download GitHub Linguist
+
+on:
+  workflow_dispatch
+
+jobs:
+  download-linguist:
+    runs-on: ubuntu-latest
+    container:
+        image: ghcr.io/expert-services/linguist:latest
+        # credentials:
+        #   username: <YOUR_USERNAME>
+        #   password: ${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}
+    steps:
+        - name: github-linguist
+          shell: bash
+          run: github-linguist
