@@ -8,5 +8,3 @@ RUN apk --update add --virtual build_deps \
     && gem install github-linguist \
     && apk del build_deps \
 	&& rm /var/cache/apk/*
-
-RUN ["github-linguist"]
