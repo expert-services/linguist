@@ -5,12 +5,17 @@ on:
 
 jobs:
   download-linguist:
+    permissions:
+      contents: read
+      packages: read
+      id-token: write
     runs-on: ubuntu-latest
+    
     container:
         image: ghcr.io/expert-services/linguist:latest
-        # credentials:
-        #   username: <YOUR_USERNAME>
-        #   password: ${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}
+        credentials:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
     steps:
         - name: github-linguist
           shell: bash
