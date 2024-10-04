@@ -10,6 +10,8 @@ on:
 jobs:
   detect-languages:
     runs-on: ubuntu-latest
+    outputs:
+      languages: ${{ steps.github-linguist.outputs.languages }}
     
     container:
       image: ghcr.io/expert-services/linguist@sha256:4782256bbb1d07eee167d2abf2b0bf4329d1e84efc4c4af83ff114f762d0e5c0
