@@ -23,5 +23,5 @@ jobs:
       - name: github-linguist
         run: |
           pwd
+          ls -al
           github-linguist
-        working-directory: ${{ github.GITHUB_WORKSPACE }}
