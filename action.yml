@@ -1,0 +1,6 @@
+name: github-linguist
+description: 'Determines the languages present in a repository'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
