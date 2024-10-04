@@ -1,9 +1,11 @@
-name: GitHub Linguist for CodeQL
+name: GitHub Linguist for Actions
 
 on:
   workflow_call:
     outputs:
-      languages: ${{ jobs.detect-laguages.outputs.languages }}
+      languages:
+        description: "The languages linguist detected"
+        value: ${{ jobs.detect-laguages.outputs.languages }}
 
 jobs:
   detect-languages:
