@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     
     container:
-      image: ghcr.io/expert-services/linguist@sha256:1962a97d7d59c1b914eb5bcb17fa35cb13019a383e2df5df98cd3e31f28c6130
+      image: ghcr.io/expert-services/linguist@sha256:4782256bbb1d07eee167d2abf2b0bf4329d1e84efc4c4af83ff114f762d0e5c0
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
