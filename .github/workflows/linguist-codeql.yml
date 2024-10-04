@@ -5,6 +5,8 @@ on:
 
 jobs:
   detect-language:
+    outputs:
+      codeql_languages: ${{ steps.github-linguist.outputs.languages }}
     runs-on: ubuntu-latest
     
     container:
