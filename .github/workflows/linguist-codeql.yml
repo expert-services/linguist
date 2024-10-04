@@ -2,11 +2,11 @@ name: GitHub Linguist for CodeQL
 
 on:
   workflow_call:
+    outputs:
+      languages: ${{ jobs.detect-laguages.outputs.languages }}
 
 jobs:
   detect-languages:
-    outputs:
-      languages: ${{ steps.github-linguist.outputs.languages }}
     runs-on: ubuntu-latest
     
     container:
