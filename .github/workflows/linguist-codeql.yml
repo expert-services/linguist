@@ -2,16 +2,26 @@ name: GitHub Linguist for Actions
 
 on:
   workflow_call:
+    inputs:
+      return_codeql_supported_languages:
+        description: 'Only returns languages supported by CodeQL'
+        default: false
+        required: false
+        type: boolean
     outputs:
       languages:
         description: "The languages linguist detected"
         value: ${{ jobs.detect-languages.outputs.languages }}
+      codeql_supported_languages:
+        description: "Languages detected by linguist that are supported by CodQL"
+        value: ${{ jobs.detect-languages.outputs.codeql_supported_languages }}
 
 jobs:
   detect-languages:
     runs-on: ubuntu-latest
     outputs:
       languages: ${{ steps.github-linguist.outputs.languages }}
+      codeql_supported_languages: ${{ steps.github-linguist.outputs.codeql_supported_languages }}
     
     container:
       image: ghcr.io/expert-services/linguist@sha256:2379c92600638bc8298816d0837c0bc8ddfa530db734fcc858b7033001d5051c
@@ -21,10 +31,17 @@ jobs:
 
       - name: Execute github-linguist
         id: github-linguist
+        env:
+          CODEQL_LANGUAGES: ${{ inputs.return_codeql_supported_languages }}
         run: |
           chown -R root:root .
           export languages=$(github-linguist --json)
-          echo "$languages"
-          echo "$languages" | jq '[{"C":"cpp", "C++":"cpp", "C#":"csharp", "Go":"go", "Java":"java", "Kotlin":"java", "JavaScript":"javascript", "TypeScript":"javascript", "Python":"python", "Ruby":"ruby"} [keys[]]] | unique -[null]'
-          
+          echo "$languages"          
           echo "languages=${languages}" >> $GITHUB_OUTPUT
+
+      - name: Query language names and update GITHUB_OUTPUT
+        id: codeql_languages
+        if: ${{ inputs.return_codeql_supported_languages }}
+        run: |
+          codeql_supported_languages=$(echo '${{ steps.github-linguist.outputs.languages }}' | jq '[{"C":"cpp", "C++":"cpp", "C#":"csharp", "Go":"go", "Java":"java", "Kotlin":"java", "JavaScript":"javascript", "TypeScript":"javascript", "Python":"python", "Ruby":"ruby"} [keys[]]] | unique -[null]')
+          echo "codeql_supported_languages=$codeql_supported_languages" >> $GITHUB_OUTPUT
