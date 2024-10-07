@@ -25,6 +25,6 @@ jobs:
           chown -R root:root .
           export languages=$(github-linguist --json)
           echo "$languages"
-          echo "$languages" | jq '[{"C":"cpp", "C++":"cpp", "C#":"csharp", "Go":"go", "Java":"java", "Kotlin":"java", "JavaScript":"javascript", "TypeScript":"javascript", "Python":"python", "Ruby":"ruby"} [keys[]]] | unique -[null] '
+          echo "$languages" | jq '[{"C":"cpp", "C++":"cpp", "C#":"csharp", "Go":"go", "Java":"java", "Kotlin":"java", "JavaScript":"javascript", "TypeScript":"javascript", "Python":"python", "Ruby":"ruby"} [keys[]]] | unique -[null]'
           
           echo "languages=${languages}" >> $GITHUB_OUTPUT
