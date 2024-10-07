@@ -25,5 +25,6 @@ jobs:
         run: |
           chown -R root:root .
           export languages=$(github-linguist --json)
+          $languages | jq 'keys[]' 
           echo "$languages"
-          echo languages=${languages} >> $GITHUB_OUTPUT
+          echo "languages=${languages}" >> $GITHUB_OUTPUT
