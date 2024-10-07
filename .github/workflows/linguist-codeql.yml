@@ -21,7 +21,6 @@ jobs:
 
       - name: Execute github-linguist
         id: github-linguist
-        shell: bash
         run: |
           chown -R root:root .
           export languages=$(github-linguist --json)
