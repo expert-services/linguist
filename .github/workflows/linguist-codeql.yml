@@ -27,3 +27,10 @@ jobs:
           export languages=$(github-linguist --json)
           echo "$languages"
           echo "languages=${languages}" >> $GITHUB_OUTPUT
+
+  test-job:
+    needs: [detect-languages]
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: echo ${{ needs.detect-languages.outputs.languages }} 
