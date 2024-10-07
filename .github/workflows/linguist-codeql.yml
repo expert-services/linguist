@@ -6,9 +6,6 @@ on:
       languages:
         description: "The languages linguist detected"
         value: ${{ jobs.detect-languages.outputs.languages }}
-      testing:
-        description: "testing"
-        value: ${{ jobs.test-job.outputs.testing }}
 
 jobs:
   detect-languages:
@@ -29,16 +26,4 @@ jobs:
           chown -R root:root .
           export languages=$(github-linguist --json)
           echo "$languages"
-          echo "languages=${languages}" >> $GITHUB_OUTPUT
-
-  test-job:
-    needs: [detect-languages]
-    outputs:
-      testing: ${{ steps.test.outputs.testing }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: print
-        run: echo ${{ needs.detect-languages.outputs.languages }} 
-      - name: test
-        id: test
-        run: echo "testing=testing" >> $GITHUB_OUTPUT
+          echo languages=${languages} >> $GITHUB_OUTPUT
