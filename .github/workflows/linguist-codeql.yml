@@ -5,7 +5,7 @@ on:
     outputs:
       languages:
         description: "The languages linguist detected"
-        value: ${{ jobs.detect-laguages.outputs.languages }}
+        value: ${{ jobs.detect-languages.outputs.languages }}
       testing:
         description: "testing"
         value: ${{ jobs.test-job.outputs.testing }}
