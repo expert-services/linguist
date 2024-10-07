@@ -34,3 +34,5 @@ jobs:
     steps:
       - name: print
         run: echo ${{ needs.detect-languages.outputs.languages }} 
+      - name: test var
+        run: echo "testing=testing" >> $GITHUB_OUTPUT
