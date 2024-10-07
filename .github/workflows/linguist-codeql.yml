@@ -14,7 +14,7 @@ jobs:
       languages: ${{ steps.github-linguist.outputs.languages }}
     
     container:
-      image: ghcr.io/expert-services/linguist@sha256:3dc698dc61745f7f022d2b7780c9d14c37c7447729963f29b715c09eaf394b46
+      image: ghcr.io/expert-services/linguist@sha256:2379c92600638bc8298816d0837c0bc8ddfa530db734fcc858b7033001d5051c
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,6 +25,7 @@ jobs:
         run: |
           chown -R root:root .
           export languages=$(github-linguist --json)
-          $languages | jq 'keys[]' 
           echo "$languages"
+          echo "$languages" | jq '[{"C":"cpp", "C++":"cpp", "C#":"csharp", "Go":"go", "Java":"java", "Kotlin":"java", "JavaScript":"javascript", "TypeScript":"javascript", "Python":"python", "Ruby":"ruby"} [keys[]]] | unique -[null] -${{inputs.exclude_codeql_languages}}')"
+          
           echo "languages=${languages}" >> $GITHUB_OUTPUT
