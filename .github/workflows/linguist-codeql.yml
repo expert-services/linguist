@@ -14,7 +14,7 @@ jobs:
       languages: ${{ steps.github-linguist.outputs.languages }}
     
     container:
-      image: ghcr.io/expert-services/linguist@sha256:4782256bbb1d07eee167d2abf2b0bf4329d1e84efc4c4af83ff114f762d0e5c0
+      image: ghcr.io/expert-services/linguist@sha256:3dc698dc61745f7f022d2b7780c9d14c37c7447729963f29b715c09eaf394b46
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
