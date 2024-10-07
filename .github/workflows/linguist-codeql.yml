@@ -25,4 +25,4 @@ jobs:
           chown -R root:root .
           languages=$(github-linguist --json)
           echo "$languages"
-          echo "languages=$languages" >> GITHUB_OUTPUT
+          echo "languages='$($languages)'" >> GITHUB_OUTPUT
