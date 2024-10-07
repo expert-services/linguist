@@ -6,7 +6,7 @@ RUN apk --update add --virtual build_deps \
     cmake \
     && apk add icu-dev openssl-dev \
 	&& apk add git \
- 	&& apk add bash \
+ 	&& apk add jq \
     && gem install github-linguist \
     && apk del build_deps \
 	&& rm /var/cache/apk/*
