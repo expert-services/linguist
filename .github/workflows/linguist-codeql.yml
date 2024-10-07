@@ -43,6 +43,6 @@ jobs:
         id: codeql_languages
         if: ${{ inputs.return_codeql_supported_languages }}
         run: |
-          export codeql_supported_languages=$(echo '${{ steps.github-linguist.outputs.languages }}' | jq '[{"C":"cpp", "C++":"cpp", "C#":"csharp", "Go":"go", "Java":"java", "Kotlin":"java", "JavaScript":"javascript", "TypeScript":"javascript", "Python":"python", "Ruby":"ruby"} [keys[]]] | unique -[null]')
+          export codeql_supported_languages=$(echo '${{ steps.github-linguist.outputs.languages }}' | jq -c '[{"C":"cpp", "C++":"cpp", "C#":"csharp", "Go":"go", "Java":"java", "Kotlin":"java", "JavaScript":"javascript", "TypeScript":"javascript", "Python":"python", "Ruby":"ruby"} [keys[]]] | unique -[null]')
           echo "$codeql_supported_languages"
-          echo "codeql_supported_languages='${codeql_supported_languages}'" >> $GITHUB_OUTPUT
+          echo "codeql_supported_languages=${codeql_supported_languages}" >> $GITHUB_OUTPUT
